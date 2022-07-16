@@ -8,7 +8,8 @@
 	<title>FluidNC</title>
   <script
     type="module"
-    src="installer/web/install-button.js">
+    src="webflasher/web_tools/install-button.js">
+
   </script>
 
 	<style>
@@ -157,15 +158,15 @@
 <div class="container inst-button">
   <select id="device" class="menu" onchange="setManifest()">
     <optgroup label="FluidNC">
-      <option data-manifest="bin_files/FluidNC_WiFi/manifest.json"
+      <option data-manifest="webflasher/bin_files/FluidNC_WiFi/manifestWiFi.json"
         >FuildNC - Wifi</option>
-        <option data-manifest="bin_files/FluidNC_BT/manifest.json"
+        <option data-manifest="webflasher/bin_files/FluidNC_BT/manifestBT.json"
         >FuildNC - Bluetooth</option>
     </optgroup>     
   </select><br>
   <esp-web-install-button
   id="inst"
-  manifest="bin_files/FluidNC_WiFi/manifest.json">
+  manifest="webflasher/bin_files/FluidNC_WiFi/manifestWiFi.json">
   <button class="btn" slot="activate">Install</button>
 </esp-web-install-button>
 

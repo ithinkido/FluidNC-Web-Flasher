@@ -1,0 +1,79 @@
+name: Get latest bin files
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '5 10 * * * '  
+    
+jobs:
+  FluidNC-Esp32:    
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: './'
+      - run: |      
+          # Get latest .bin files
+          
+          if [ ! -d ./webflasher/ ] ; then
+            mkdir ./webflasher/
+          fi
+
+          if [ ! -d ./webflasher/bin_files/ ] ; then
+            mkdir ./webflasher/bin_files/
+          fi
+
+          mkdir temp
+          cd temp/
+          ver=$(curl -sL https://api.github.com/repos/bdring/FluidNC/releases | jq -r .[].tag_name | grep '^v[0-9]\.[0-9]*\.[0-9]*$' | sort -nr | head -n1) 
+          echo ${ver}
+          wget -q https://github.com/bdring/FluidNC/releases/download/${ver}/fluidnc-${ver}-posix.zip 
+          
+          # Unpack and cleanup
+          unzip -q *.zip
+          rm *.zip
+          cd ..
+
+          if [ ! -d ./webflasher/bin_files/FluidNC_BT/ ] ; then
+            mkdir ./webflasher/bin_files/FluidNC_BT/
+          fi
+
+          echo ''
+          echo 'FluidNC-BT bin files'
+          echo ''
+
+          cp temp/fluidnc-${ver}-posix/bt/firmware.bin ./webflasher/bin_files/FluidNC_BT/firmware.bin
+          cp temp/fluidnc-${ver}-posix/bt/partitions.bin ./webflasher/bin_files/FluidNC_BT/partitions.bin
+          cp temp/fluidnc-${ver}-posix/common/boot_app0.bin ./webflasher/bin_files/FluidNC_BT/boot_app0.bin
+          cp temp/fluidnc-${ver}-posix/common/bootloader_dio_80m.bin ./webflasher/bin_files/FluidNC_BT/bootloader_dio_80m.bin
+  
+          ls ./webflasher/bin_files/FluidNC_BT/
+
+          if [ ! -d ./webflasher/bin_files/FluidNC_WiFi/ ] ; then
+            mkdir ./webflasher/bin_files/FluidNC_WiFi/
+          fi
+
+          echo ''
+          echo 'FluidNC-WiFi bin files'
+          echo ''
+
+          cp temp/fluidnc-${ver}-posix/common/boot_app0.bin ./webflasher/bin_files/FluidNC_WiFi/boot_app0.bin
+          cp temp/fluidnc-${ver}-posix/common/bootloader_dio_80m.bin ./webflasher/bin_files/FluidNC_WiFi/bootloader_dio_80m.bin
+          cp temp/fluidnc-${ver}-posix/wifi/firmware.bin ./webflasher/bin_files/FluidNC_WiFi/firmware.bin
+          cp temp/fluidnc-${ver}-posix/wifi/partitions.bin ./webflasher/bin_files/FluidNC_WiFi/partitions.bin          
+          cp temp/fluidnc-${ver}-posix/wifi/spiffs.bin ./webflasher/bin_files/FluidNC_WiFi/spiffs.bin          
+
+          ls ./webflasher/bin_files/FluidNC_WiFi/
+          rm -rf temp/
+          
+      - uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Add latest bin files'
+          committer_name: Hard working robot
+          default_author: github_actions
+          add: 'bin_files/ --all --force'
+          cwd: './webflasher/'  

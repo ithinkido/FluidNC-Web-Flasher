@@ -2,23 +2,31 @@ name: Update ESP web tools
 
 on:
   workflow_dispatch:
-  # push:
-    
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '10 10 * * * '  
 jobs:
-  SqueezeLite-Esp32:    
+  web-tools:    
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
-          path: './webtools/'
+          path: './'
       - run: |      
-          # ESP web tools
-          cd ./webtools/
-          if [ ! -d installer/ ] ; then
-            mkdir installer/
+          # Update ESP web tools
+
+          if [ ! -d ./webflasher/ ] ; then
+            mkdir ./webflasher/
           fi
-          cd installer/
-          rm -r *
+
+          cd ./webflasher/
+          if [ ! -d temp/ ] ; then
+            mkdir temp/
+          fi
+
+          cd temp/
           ver=$(curl -sL https://api.github.com/repos/esphome/esp-web-tools/releases | jq -r .[].tag_name | grep '^[0-9]\.[0-9]*\.[0-9]*$' | sort -nr | head -n1) 
           wget -q https://github.com/esphome/esp-web-tools/archive/refs/tags/${ver}.zip 
           unzip -q *.zip
@@ -30,24 +38,30 @@ jobs:
         with:
           node-version: 16
       - run: |
-          cd webtools/installer/esp-web-tools-*/
-          ls -l
-          npm ci
-          ls -l
+          cd webflasher/temp/esp-web-tools-*/ &&
+          npm ci 
+          wait
           script/build
           cd ..
           cd ..
-          mv installer/esp-web-tools-*/dist/web installer/
-          rm -r installer/esp-web-tools-*/
+
+          if [ ! -d web_tools/ ] ; then
+          mkdir web_tools/
+          fi  
+
+          mv temp/esp-web-tools-*/dist/web/*.* web_tools/
+          # echo "Web tools"
+          # ls ./web_tools/
+          rm -r temp/
+ 
           echo ''
           echo '.....'
           echo ''
           ls -l
 
-
       - uses: EndBug/add-and-commit@v9
         with:
-          message: 'Update web tools installer'
+          message: 'Update web tools'
           default_author: github_actions
-          add: 'installer/ --all --force'
-          cwd: './webtools/'  
+          add: 'webflasher/web_tools/ --all --force'
+          cwd: './'  

@@ -1,0 +1,48 @@
+name: First Run
+
+on:
+  workflow_dispatch:
+  push:
+  
+jobs:
+  First-run-setup:    
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: './'
+      - run: |      
+          # Setup folder structure
+
+          if [ ! -d ./webflasher/ ] ; then
+            mkdir ./webflasher/
+          fi
+
+          cd ./webflasher/
+          if [ ! -d bin_files/ ] ; then
+            mkdir bin_files/
+          fi
+
+          if [ ! -d web_tools/ ] ; then
+            mkdir web_tools/
+            echo 'The ESP tools web button will be placed in this folder' > web_tools/README.md 
+          fi
+
+          cd bin_files/
+          if [ ! -d FluidNC_BT/ ] ; then
+            mkdir FluidNC_BT/
+            echo '{/*create a manifest*/}' > FluidNC_BT/manifestBT.json
+          fi
+
+          if [ ! -d FluidNC_WiFi/ ] ; then
+            mkdir FluidNC_WiFi/
+            echo '{/*create a manifest*/}' > FluidNC_WiFi/manifestWiFi.json
+          fi         
+
+      - uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Update web tools'
+          default_author: github_actions
+          add: webflasher/bin_files --all --force
+               webflasher/web_tools --all --force
+          cwd: '.'  
