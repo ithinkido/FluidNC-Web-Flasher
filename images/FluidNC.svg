@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: CorelDRAW X7 -->
+
+<svg
+   xml:space="preserve"
+   width="128"
+   height="128"
+   version="1.1"
+   style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+   viewBox="0 0 1059.625 1059.4901"
+   id="svg24"
+   sodipodi:docname="FluidNC.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+   id="namedview26"
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1.0"
+   inkscape:pageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:document-units="in"
+   showgrid="false"
+   units="px"
+   inkscape:zoom="0.94510777"
+   inkscape:cx="106.33708"
+   inkscape:cy="69.304265"
+   inkscape:window-width="1600"
+   inkscape:window-height="829"
+   inkscape:window-x="0"
+   inkscape:window-y="0"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_x0020_1" />
+ <defs
+   id="defs4">
+  <style
+   type="text/css"
+   id="style2">
+   <![CDATA[
+    .fil1 {fill:#005B96}
+    .fil2 {fill:#6497B1}
+    .fil0 {fill:#20262C;fill-rule:nonzero}
+   ]]>
+  </style>
+ </defs>
+ <g
+   id="Layer_x0020_1"
+   inkscape:label="Layer 1"
+   inkscape:groupmode="layer">
+  <metadata
+   id="CorelCorpID_0Corel-Layer" />
+  
+  
+  
+  
+  
+  
+  
+  <path
+   class="fil1"
+   d="m 479.27041,115.15024 c -5.6664,189.82587 18.8882,254.04556 118.0509,395.70666 50.998,67.05292 78.3858,149.21635 78.3858,233.2686 0,88.77429 -30.221,174.71535 -84.9966,243.65709 6.6108,-203.04757 -30.2211,-242.71268 -114.2733,-382.48496 -84.0523,-114.27328 -163.3825,-350.37511 2.8332,-490.14739 z"
+   id="path17"
+   style="stroke-width:1" />
+  <path
+   class="fil2"
+   d="m 439.60531,1059.5576 c 14.1661,-121.8286 -75.5526,-199.27 -118.0509,-291.82192 -9.4441,-21.72136 -14.1661,-44.38714 -14.1661,-67.99732 0,-50.05359 22.6658,-97.27395 61.3865,-128.43939 13.2217,115.21769 98.2183,204.93638 135.9946,312.59881 19.8326,55.72003 14.1661,114.27329 -65.1641,175.65982 z"
+   id="path19"
+   style="stroke-width:1" />
+  <path
+   class="fil2"
+   d="m 672.87391,491.02435 c 19.8326,-120.88414 -65.1641,-204.93639 -102.9404,-297.4883 -7.5552,-18.88815 -11.3329,-39.66511 -11.3329,-59.49766 0,-52.886812 25.499,-102.940399 67.9974,-134.10584 6.6108,115.21769 86.8854,211.54724 118.0509,320.15407 16.9993,54.77563 10.3885,112.38447 -71.775,170.93773 z"
+   id="path21"
+   style="stroke-width:1" />
+ </g>
+</svg>
