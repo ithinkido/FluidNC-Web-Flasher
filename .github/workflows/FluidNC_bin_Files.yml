@@ -1,9 +1,11 @@
 name: Get latest bin files
 
 on:
-  workflow_run:
-    workflows: ["Update ESP web tools"]
-    types: [completed]
+  schedule:
+    - cron: '11 11 * * * '   
+  # workflow_run:
+  #   workflows: ["Update ESP web tools"]
+  #   types: [completed]
     
 jobs:
   FluidNC-Esp32:    
