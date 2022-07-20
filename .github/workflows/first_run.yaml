@@ -2,9 +2,9 @@ name: First Run
 
 on:
   workflow_dispatch:
-  push:
-  schedule:
-    - cron: '11 11 * * * '    
+  # push:
+  # schedule:
+  #   - cron: '11 11 * * * '    
   
 jobs:
   First-run-setup:    
