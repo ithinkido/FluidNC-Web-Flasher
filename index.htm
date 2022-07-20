@@ -7,8 +7,8 @@
 	<meta name="theme-color" content="#222222">
 	<link rel="shortcut icon" href="./images/FluidNC_32x32.png">
 	<title>FluidNC</title>
-	<script type="module" src="webflasher/web_tools/install-button.js"></script>
-
+	<!-- <script type="module" src="/webflasher/web_tools/install-button.js"></script> -->
+	<script type="module" src="https://unpkg.com/esp-web-tools@8.0.6/dist/web/install-button.js"></script>
 	<style>
 		/* ---- clean css ---- */
 
@@ -215,7 +215,9 @@
 						</option>
 					</optgroup>
 				</select><br>
-				<esp-web-install-button id="inst" manifest="webflasher/bin_files/FluidNC_WiFi/manifestWiFi.json">
+				<input type="checkbox" id="webui" name="webui" checked onchange="setManifest()"></input>
+				<label for="webui"> WebUI ( This <strong>will</strong> erase your previous config files ! )</label><br>
+				<esp-web-install-button id="inst" manifest="webflasher/bin_files/FluidNC_WiFi_UI/manifestWiFi_UI.json">
 					<button class="btn" slot="activate">Install</button>
 				</esp-web-install-button>
 
@@ -232,9 +234,22 @@
 
 	<script>
 		function setManifest() {
+
 			var sel = document.getElementById('device');
 			var opt = sel.options[sel.selectedIndex];
 			var m = opt.dataset.manifest;
+
+			if (document.getElementById("device").value == "FluidNC - Bluetooth") {
+				document.getElementById("webui").checked = false;
+				document.getElementById("webui").disabled = true;
+				return;
+			}
+			else {
+				document.getElementById("webui").disabled = false;
+			}
+			if ( document.getElementById("webui").checked ) {
+				m = "webflasher/bin_files/FluidNC_WiFi_UI/manifestWiFi_UI.json";
+			}
 			document.getElementById('inst').setAttribute('manifest', m);
 		}
 
