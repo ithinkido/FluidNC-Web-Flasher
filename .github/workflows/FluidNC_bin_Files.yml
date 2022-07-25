@@ -59,22 +59,6 @@ jobs:
 
           ls ./webflasher/bin_files/FluidNC_WiFi/
 
-          if [ ! -d ./webflasher/bin_files/FluidNC_WiFi_UI/ ] ; then
-            mkdir ./webflasher/bin_files/FluidNC_WiFi_UI/
-          fi
-
-          cp temp/fluidnc-${ver}-posix/common/boot_app0.bin ./webflasher/bin_files/FluidNC_WiFi_UI/boot_app0.bin
-          cp temp/fluidnc-${ver}-posix/common/bootloader_dio_80m.bin ./webflasher/bin_files/FluidNC_WiFi_UI/bootloader_dio_80m.bin
-          cp temp/fluidnc-${ver}-posix/wifi/firmware.bin ./webflasher/bin_files/FluidNC_WiFi_UI/firmware.bin
-          cp temp/fluidnc-${ver}-posix/wifi/partitions.bin ./webflasher/bin_files/FluidNC_WiFi_UI/partitions.bin          
-          cp temp/fluidnc-${ver}-posix/wifi/spiffs.bin ./webflasher/bin_files/FluidNC_WiFi_UI/spiffs.bin
-          
-          echo ''
-          echo 'FluidNC-WiFi + UI bin files'
-          echo ''
-
-          ls ./webflasher/bin_files/FluidNC_WiFi_UI/
-
           rm -rf temp/
           
       - uses: EndBug/add-and-commit@v9

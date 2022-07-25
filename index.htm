@@ -9,6 +9,7 @@
 	<title>FluidNC</title>
 	<!-- <script type="module" src="/webflasher/web_tools/install-button.js"></script> -->
 	<script type="module" src="https://unpkg.com/esp-web-tools@8.0.6/dist/web/install-button.js"></script>
+	<!-- There is a bug in esp-web-tools > 9.0.0 - use 8.0.6 for now   -->
 	<style>
 		/* ---- clean css ---- */
 
@@ -201,7 +202,7 @@
 
 			<ol>
 				<li>Plug in your ESP to a USB port. </li>
-				<li>Select the firmware variant ( WiFi or Blutooth) for your device. </li>
+				<li>Select the firmware variant ( WiFi or Bluetooth) for your device. </li>
 				<li>Hit "Install" and select the correct COM port. </li>
 			</ol>
 			<br>
@@ -217,7 +218,7 @@
 				</select><br>
 				<input type="checkbox" id="webui" name="webui" checked onchange="setManifest()"></input>
 				<label for="webui"> WebUI ( This <strong>will</strong> erase your previous config files ! )</label><br>
-				<esp-web-install-button id="inst" manifest="webflasher/bin_files/FluidNC_WiFi_UI/manifestWiFi_UI.json">
+				<esp-web-install-button id="inst" manifest="webflasher/bin_files/FluidNC_WiFi/manifestWiFi_UI.json">
 					<button class="btn" slot="activate">Install</button>
 				</esp-web-install-button>
 
@@ -242,13 +243,16 @@
 			if (document.getElementById("device").value == "FluidNC - Bluetooth") {
 				document.getElementById("webui").checked = false;
 				document.getElementById("webui").disabled = true;
-				return;
 			}
 			else {
 				document.getElementById("webui").disabled = false;
 			}
+
 			if ( document.getElementById("webui").checked ) {
-				m = "webflasher/bin_files/FluidNC_WiFi_UI/manifestWiFi_UI.json";
+				m = m.replace("manifestWiFi", "manifestWiFi_UI");
+			}
+			else{
+				m = m.replace("manifestWiFi_UI", "manifestWiFi");
 			}
 			document.getElementById('inst').setAttribute('manifest', m);
 		}

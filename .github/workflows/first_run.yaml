@@ -39,10 +39,6 @@ jobs:
           if [ ! -d FluidNC_WiFi/ ] ; then
             mkdir FluidNC_WiFi/
             echo '{/*create a manifest*/}' > FluidNC_WiFi/manifestWiFi.json
-          fi 
-
-          if [ ! -d FluidNC_WiFi_UI/ ] ; then
-            mkdir FluidNC_WiFi_UI/
             echo '{/*create a manifest*/}' > FluidNC_WiFi_UI/manifestWiFi_UI.json
           fi 
 

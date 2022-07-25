@@ -1,10 +1,10 @@
 {
     "name": "FluidNC-WiFi-UI",
+    "improv": false,
     "new_install_prompt_erase": false,
     "builds": [
       {
         "chipFamily": "ESP32",
-        "improv": false,
         "parts": [
           { "path": "bootloader_dio_80m.bin", "offset": 4096 },
           { "path": "partitions.bin", "offset": 32768 },
