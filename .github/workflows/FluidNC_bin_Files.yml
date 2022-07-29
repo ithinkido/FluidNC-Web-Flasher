@@ -2,7 +2,7 @@ name: Get latest bin files
 
 on:
   schedule:
-    - cron: '11 * * * * '   
+    - cron: '11 11 * * * '   
   workflow_dispatch:  
   # workflow_run:
   #   workflows: ["Update ESP web tools"]
